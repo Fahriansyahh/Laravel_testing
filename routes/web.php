@@ -21,10 +21,18 @@ Route::get('/About', function () {
 });
 
 
+Route::get('/signin', function () {
+    return view('login.index', [
+        "pages" => "home"
+    ]);
+});
+
+Route::get('/signup', function () {
+    return view('login.signup', [
+        "pages" => "home"
+    ]);
+});
 Route::get('/List', [ControllerListUsers::class, "index"]);
-
-
-Route::get('/List/{slug}', [ControllerListUsers::class, "show"]);
 
 
 Route::get('/Management', [ControllerManagement::class, "index"]);

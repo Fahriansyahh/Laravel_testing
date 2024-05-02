@@ -7,6 +7,7 @@
             <p>ini adalah halaman about</p>
             <hr class="mx-auto">
         </div>
+
         <div class="d-flex justify-content-center mt-5">
             <div class="row w-50">
                 <div class="col-12">

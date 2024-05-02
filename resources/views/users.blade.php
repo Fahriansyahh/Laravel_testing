@@ -17,13 +17,10 @@
                         </div>
                         <div class="col-8">
                             <div class="container ">
-                                @if (isset($item))
-                                    <p style="font-size: 12px" class="text-end">{{ $item['created_at'] }}</p>
+                                @if (isset($blog))
+                                    <p style="font-size: 12px" class="text-end">{{ $blog->created_at }}</p>
                                     <div class="m-3">
-                                        <h6 class="display-6 ">{{ $item['nama'] }}</h6>
-                                        <p style="font-size: 12px"> jabatan <a
-                                                href="/Management/{{ $management->position }}">{{ $management->position }}</a>
-                                        </p>
+                                        <h6 class="display-6 ">{{ $blog->nama }}</h6>
                                     </div>
                                 @endif
                             </div>
@@ -34,16 +31,16 @@
                 <div class="col-12 my-5">
                     <div class="abouts">
                         <p>
-                            {{ $item['about'] }}
+                            {{ $item->about }}
                         </p>
                         <p>
-                            umur : {{ $item['umur'] }}
+                            umur : {{ $item->umur }}
                         </p>
                         <p>
-                            married : {{ $item['married'] === 0 ? 'sudah' : 'belum' }}
+                            married : {{ $item->married === 0 ? 'sudah' : 'belum' }}
                         </p>
                         <p>
-                            {{ $item['description'] }}
+                            {{ $item->description }}
                         </p>
                     </div>
                 </div>

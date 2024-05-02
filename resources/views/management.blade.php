@@ -29,7 +29,7 @@
                                 <img class="card-img-top rounded-circle " src="{{ asset('images/fahri_foto.jpeg') }}"
                                     alt="Card image cap" style="width: 40px">
                                 <p>{{ $item->nama }}</p>
-                                <a href="/List/{{ $item->slug }}">Telusuri</a>
+                                <a href="/List?slug={{ $item->slug }}">Telusuri</a>
                             </li>
                         @endforeach
                     </ul>
