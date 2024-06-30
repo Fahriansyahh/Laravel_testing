@@ -29,7 +29,7 @@
 </head>
 
 <body>
-    @if (!Route::is('signin') && !Route::is('signup'))
+    @if (!request()->is('signin') && !request()->is('signup'))
         @include('partials.navbar')
     @endif
     <div class="row">
