@@ -16,7 +16,18 @@ class management extends Model
 
     public function list(): HasMany
     {
-        return $this->hasMany(list_users::class);
+        return $this->hasMany(list_users::class, 'management_id', 'id');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($management) {
+            $management->list()->each(function ($user) {
+                $user->delete();
+            });
+        });
     }
     protected $fillable = ["position", 'role_position'];
 
