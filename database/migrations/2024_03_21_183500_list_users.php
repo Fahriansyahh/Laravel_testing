@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('nama');
             $table->integer("umur");
+            $table->string("images")->nullable();
             $table->boolean("married")->default(false);
             $table->text('description');
             $table->string('about');

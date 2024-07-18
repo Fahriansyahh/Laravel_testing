@@ -28,9 +28,16 @@
                                 <div style="background-color:A0153E ">
                                     <div class="d-flex justify-content-center "
                                         style="background-color: #365486;clip-path: polygon(50% 0%, 100% 0, 100% 5%, 100% 61%, 85% 89%, 49% 100%, 13% 89%, 0 61%, 0 38%, 0 0);box-shadow: inset -1px -3px 5px white,inset 1px 1px 5px white;border: 3px solid black;border-bottom: 0px solid white;">
-                                        <img class="card-img-top rounded-circle  mt-5 mb-2"
-                                            src="{{ asset('images/fahri_foto.jpeg') }}" alt="Card image cap"
-                                            style="width: 100px">
+                                        @if ($item->images)
+                                            <img class="card-img-top rounded-circle  mt-5 mb-2"
+                                                src="{{ asset('storage/' . $item->images) }}" alt="Card image cap"
+                                                style="width: 100px">
+                                        @else
+                                            <img class="card-img-top rounded-circle  mt-5 mb-2"
+                                                src="{{ asset('images/fahri_foto.jpeg') }}" alt="Card image cap"
+                                                style="width: 100px">
+                                        @endif
+
                                     </div>
                                 </div>
                                 <div class="card-body d-flex flex-column justify-content-between">

@@ -3,11 +3,11 @@
 @section('contain')
     <div class="col-lg-8">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Create Management</h1>
+            <h1 class="h2">Create ListUsers</h1>
         </div>
     </div>
     <div class="col-lg-8">
-        <form method="post" action="{{ route('listusers.store') }}">
+        <form method="post" enctype="multipart/form-data" action="/dashboard/listusers">
             @csrf
             <div class="mb-3">
                 <label for="management_id" class="form-label">Select Position</label>
@@ -38,7 +38,33 @@
                     </div>
                 @enderror
             </div>
+            <img class="imgPublish img-fluid img-thumbnail w-25 mb-3 " alt="Image Preview" src=""
+                style="display: none">
+            <div class="mb-3">
 
+                <label for="images" class="form-label @error('images') is-invalid @enderror">Foto Diri</label>
+                <input class="form-control" type="file" id="images" name="images" onchange="filedata()">
+
+                @error('images')
+                    <div class="invalid-feedback">
+                        Example invalid form file feedback
+                    </div>
+                @enderror
+
+                <script>
+                    function filedata() {
+                        const image = document.querySelector('#images');
+                        const imagesFoto = document.querySelector('.imgPublish');
+                        imagesFoto.style.display = 'block'
+                        const oFReader = new FileReader();
+                        oFReader.readAsDataURL(image.files[0]);
+
+                        oFReader.onload = function(OFREvent) {
+                            imagesFoto.src = OFREvent.target.result;
+                        };
+                    }
+                </script>
+            </div>
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input @error('married') is-invalid @enderror" id="married"
                     name="married">

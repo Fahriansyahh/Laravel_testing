@@ -7,6 +7,7 @@ use App\Models\management;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class ControllerDashboardListuser extends Controller
 {
@@ -40,9 +41,13 @@ class ControllerDashboardListuser extends Controller
             'married' => 'max:2',
             'description' => 'required|min:3|max:255',
             'about' => '',
-            'management_id' => 'required'
-
+            'management_id' => 'required',
+            'images' => 'required|image|file|max:1024',
         ]);
+        if ($request->file('images')) {
+            $validated['images'] = $request->file('images')->store('images');
+        };
+
         $slug = Str::slug($validated['nama'], '-');
         $validated['slug'] =  $slug;
         $validated['user_id'] = Auth::id();
@@ -93,24 +98,35 @@ class ControllerDashboardListuser extends Controller
             'married' => 'max:2',
             'description' => 'required|min:3|max:255',
             'about' => 'required',
-            'management_id' => 'required'
+            'management_id' => 'required',
+            'images' => 'required|image|file|max:1024',
+
         ];
         $listuser = list_users::findOrFail($id);
         if ($request->nama !== $listuser->nama) {
             $rules['nama'] = "required|unique:list_users|min:3|max:15";
+            $rules['slug'] = 'required';
         }
         if ($request->management_id !== $listuser->management_id) {
             $rules['management_id'] = "required";
         }
+        $slug = Str::slug($request->nama, '-');
         $request->merge([
             'about' => strip_tags($request->input('about')),
             'description' => strip_tags($request->input('description')),
-            'slug' =>   Str::slug($request->nama, '-'),
+            'slug' =>   $slug,
             'married' =>  $listuser->married !== $request->boolean('married') ? $listuser->married : $request->boolean('married')
         ]);
+
+
         $validated = $request->validate($rules);
 
-
+        if ($request->file('images')) {
+            if ($listuser->images) {
+                Storage::delete($listuser->images);
+            }
+            $validated['images'] = $request->file('images')->store('images');
+        };
         $listuser->update($validated);
         return redirect('/dashboard/listusers');
     }
@@ -120,7 +136,11 @@ class ControllerDashboardListuser extends Controller
      */
     public function destroy(string $id)
     {
+
         $user = list_users::findOrFail($id);
+        if ($user->images) {
+            Storage::delete($user->images);
+        }
         $user->delete();
 
         return redirect()->route('listusers.index')->with('success', 'User deleted successfully');

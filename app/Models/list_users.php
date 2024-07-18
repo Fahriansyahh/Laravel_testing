@@ -15,7 +15,7 @@ use App\Models\User;
 class list_users extends Model
 {
     use HasFactory;
-    protected $fillable = ['slug', 'nama', 'description', 'about', 'umur', 'married', 'management_id', 'user_id'];
+    protected $fillable = ['slug', 'nama', 'description', 'about', 'umur', 'married', 'management_id', 'user_id', 'images'];
     protected $table = 'list_users';
     // protected static function newFactory()
     // {

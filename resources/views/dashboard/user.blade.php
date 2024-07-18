@@ -15,20 +15,19 @@
             <div class="row w-50">
                 <div class="col-12">
                     <div class="row">
-                        <div class="col-4">
-                            <img src={{ asset('images/fahri_foto.jpeg') }} class="rounded-circle my-2 mx-auto d-block"
-                                alt="..." width="150">
-                        </div>
-                        <div class="col-8">
-                            <div class="container ">
-                                @if (isset($blog))
-                                    <p style="font-size: 12px" class="text-end">{{ $blog->created_at }}</p>
-                                    <div class="m-3">
-                                        <h6 class="display-6 ">{{ $blog->nama }}</h6>
-                                    </div>
-                                @endif
+                        @if ($item->images)
+                            <div class="col-4" style="max-width:150px;">
+                                <img src="{{ asset('storage/' . $item->images) }}"
+                                    class="rounded-circle my-2 mx-auto d-block border border-dark" alt="..."
+                                    width="150">
                             </div>
-                        </div>
+                        @else
+                            <div class="col-4">
+                                <img src={{ asset('images/fahri_foto.jpeg') }} class="rounded-circle my-2 mx-auto d-block"
+                                    alt="..." width="150">
+                            </div>
+                        @endif
+
                     </div>
 
                 </div>

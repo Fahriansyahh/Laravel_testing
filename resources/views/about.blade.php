@@ -12,10 +12,19 @@
             <div class="row w-50">
                 <div class="col-12">
                     <div class="row">
-                        <div class="col-4">
-                            <img src={{ asset('images/fahri_foto.jpeg') }} class="rounded-circle my-2 mx-auto d-block"
-                                alt="..." width="150">
-                        </div>
+
+                        @if ($item['images'])
+                            <div class="col-4">
+                                <img src="{{ asset('storage/' . $item['images']) }}"
+                                    class="rounded-circle my-2 mx-auto d-block" alt="..." width="150">
+                            </div>
+                        @else
+                            <div class="col-4">
+                                <img src="{{ asset('images/fahri_foto.jpeg') }}" class="rounded-circle my-2 mx-auto d-block"
+                                    alt="..." width="150">
+                            </div>
+                        @endif
+
                         <div class="col-8">
                             <div class="container ">
                                 @if (isset($item))

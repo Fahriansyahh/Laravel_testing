@@ -26,8 +26,14 @@
                         @foreach ($management as $item)
                             <li class="list-group-item mx-2 d-flex flex-wrap  justify-content-between mt-2"
                                 style="background-color:aliceblue">
-                                <img class="card-img-top rounded-circle " src="{{ asset('images/fahri_foto.jpeg') }}"
-                                    alt="Card image cap" style="width: 40px">
+                                @if ($item->images)
+                                    <img class="card-img-top rounded-circle " src="{{ asset('storage/' . $item->images) }}"
+                                        alt="Card image cap" style="width: 40px">
+                                @else
+                                    <img class="card-img-top rounded-circle " src="{{ asset('images/fahri_foto.jpeg') }}"
+                                        alt="Card image cap" style="width: 40px">
+                                @endif
+
                                 <p>{{ $item->nama }}</p>
                                 <a href="/List?slug={{ $item->slug }}">Telusuri</a>
                             </li>

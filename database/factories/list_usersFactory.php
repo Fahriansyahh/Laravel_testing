@@ -20,6 +20,7 @@ class list_usersFactory extends Factory
             'slug' => fake()->slug(),
             'nama' => fake()->name(),
             'umur' => fake()->numberBetween(17, 40),
+            'images' => fake()->optional(0)->imageUrl(),
             'management_id' => fake()->numberBetween(1, 4),
             'description' => fake()->text(100),
             'about' => fake()->text(100),
