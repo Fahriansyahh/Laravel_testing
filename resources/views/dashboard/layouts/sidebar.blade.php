@@ -7,12 +7,7 @@
                     Dashboard
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard/management">
-                    <span data-feather="file"></span>
-                    Management
-                </a>
-            </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="/dashboard/listusers">
                     <span data-feather="file"></span>
@@ -20,5 +15,21 @@
                 </a>
             </li>
         </ul>
+        <br>
+        <hr>
+        @can('isAdmin')
+            <ul class="nav flex-column">
+
+                <li class="nav-item">
+                    <h6 class="nav-link "><u>Adminstrator</u></h6>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard/management">
+                        <span data-feather="file"></span>
+                        Management
+                    </a>
+                </li>
+            </ul>
+        @endcan
     </div>
 </nav>

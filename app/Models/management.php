@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\list_users;
 
+
 class management extends Model
 {
+    protected $fillable = ["position", 'role_position', 'isAdmin'];
     public static function alls()
     {
         return parent::all(); // Mengambil semua data dari tabel 'posts'
@@ -29,7 +31,13 @@ class management extends Model
             });
         });
     }
-    protected $fillable = ["position", 'role_position'];
+
+    protected function casts(): array
+    {
+        return [
+            'isAdmin' => 'boolean',
+        ];
+    }
 
     use HasFactory;
 }

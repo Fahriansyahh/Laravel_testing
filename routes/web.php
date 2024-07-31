@@ -43,5 +43,5 @@ Route::get('/Management', [ControllerManagement::class, "index"])->middleware('a
 Route::get('/Management/{management:position}', [ControllerManagement::class, "show"])->middleware('auth');
 
 Route::get("/dashboard", [ControllerDashboard::class, "index"])->middleware('auth');
-Route::resource("/dashboard/management", ControllerDashboardManagement::class)->middleware('auth');
+Route::resource("/dashboard/management", ControllerDashboardManagement::class)->middleware('isAdmin');
 Route::resource("/dashboard/listusers", ControllerDashboardListuser::class)->middleware('auth');
